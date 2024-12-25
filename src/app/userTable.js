@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams, useRouter } from "next/navigation";
 import {
@@ -194,4 +194,13 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+// Wrap UserTable with Suspense
+const UserTableWithSuspense = () => {
+  return (
+    <Suspense fallback={<div>Loading user data...</div>}>
+      <UserTable />
+    </Suspense>
+  );
+};
+
+export default UserTableWithSuspense;
